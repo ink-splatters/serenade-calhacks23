@@ -18,7 +18,7 @@ async function getTopSong(userId: string) {
   // Initialize Clerk
   const clerk = Clerk({ secretKey: 'sk_test_tuvlhnoT55OF5X28tq0sGR1G3PRLCkJU3eInTjivtP' });
 
-  
+
   // Get the user's OAuth token
   const OAuthAccessToken = await clerk.users.getUserOauthAccessToken(userId, 'oauth_spotify');
   const token = OAuthAccessToken[0].token;
@@ -46,7 +46,7 @@ export default async function handler(
       res.status(405).end(`Method Not Allowed`);
   }
 
-  // res.status(200).json({ 
+  // res.status(200).json({
   //   audioUrl: 'https://replicate.delivery/pbxt/F5wXHeQalswlGSCt9g68bz8OpqZeCqvNwwX9f2RkSTPUL6ljA/out.wav',
   // })
   // return
@@ -73,16 +73,12 @@ export default async function handler(
       max_tokens: 100,
       model: 'gpt-3.5-turbo',
       messages: [
-<<<<<<< HEAD
-        {'role': 'user', 'content': `I’m feeling like ${emoji}. What’s a good prompt for MusicGen, an AI music generation model, to cheer me up through therapeutic music? Please base it on my favorite song: ${songTitle}`},
-=======
         {'role': 'user', 'content': `I’m feeling like ${emoji}. What’s a good prompt for MusicGen, an AI music generation model, to cheer me up through therapeutic music? Please base it on my favorite song: ${songTitle}. ONLY return the prompt without ANY explanation or lead-up. Keywords only, not full sentences.
 
 Example 1: Edo25 major g melodies that sound triumphant and cinematic. Leading up to a crescendo that resolves in a 9th harmonic
 Example 2: A grand orchestral arrangement with thunderous percussion, epic brass fanfares, and soaring strings, creating a cinematic atmosphere fit for a heroic battle.
 
 Use whatever instruments you want for medically-proven therapeutic purposes.`},
->>>>>>> 8a71b74007bfeafd86a96931e1245c8d2f17000e
       ],
     })
   })
@@ -132,7 +128,7 @@ Use whatever instruments you want for medically-proven therapeutic purposes.`},
   await rm(tmpDir, { recursive: true, force: true })
 
   // return
-  res.status(200).json({ 
+  res.status(200).json({
     audioUrl: replicateOut.output,
   })
 }
